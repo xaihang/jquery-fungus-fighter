@@ -33,7 +33,8 @@ When you click an attack button:
 **Progress Bar**
 
 When state changes:
-  - Update the value of each `<progress>` element
+  - Update the value of each `<progress>` element: 
+$('#hp-meter').val(80)
 
 > Hint: the jQuery `.val()` method updates the `value` attribute of HTML elements!
 
