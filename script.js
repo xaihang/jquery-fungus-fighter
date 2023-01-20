@@ -25,23 +25,20 @@ const hpStarFire = 25;
 
 
 function onReady() {
-    // render(); 
 
     // Make sure you check the index.html file! 
     // There are lots of buttons and things ready for you to hook into here!
     
     // 🧠 Remember:
     // - Handle events that ->
-    $('.arcane-sceptre').click(attackBtnClickedArcaneScepter);
-    // $('.entangle').click(attackBtnClickedEntangle);
-    // $('.dragon-blade').click(attackBtnClickedDragonBlade);
-    // $('.star-fire').click(attackBtnClickedStarFire);
-
     // - Updates state which is ->
-    // $('.arcane-sceptre').click(---);
-
     // - Rendered to the DOM
-    // $('.arcane-sceptre').click(resultArcaneScepter);
+
+    $('.arcane-sceptre').click(attackBtnClickedArcaneScepter);
+    $('.entangle').click(attackBtnClickedEntangle);
+    $('.dragon-blade').click(attackBtnClickedDragonBlade);
+    $('.star-fire').click(attackBtnClickedStarFire);
+
 };
 
 //------- events handler functions when attacked btn is 'clicked' -------//
@@ -97,9 +94,9 @@ let attackBtnClickedArcaneScepter = function(){
         $('.freaky-fungus').removeClass('walk').addClass('dead');
     }
 
-    // stretch-goal**HP Regeneration** 
-    //  If the Freaky Fungus' HP falls below 50, 
-    //  have it regenerate 1 HP every second.
+// stretch-goal**HP Regeneration** 
+//  If the Freaky Fungus' HP falls below 50, 
+//  have it regenerate 1 HP every second.
     let regenerate;
         if(newHP <= 50){
         regenerate = setInterval(function() {
@@ -114,61 +111,133 @@ let attackBtnClickedArcaneScepter = function(){
 }
 
 let attackBtnClickedEntangle = function(){
-    // Update AP value
-    let currentAP = parseInt($('.ap-text').text());
-    let newAP = currentAP - apEntangle;
-    if (newAP < 0) {
-        newAP = 0;
-    }
-    $('.ap-text').text(newAP);
-    $('#ap-meter').val(newAP);
 
-    // Update HP value
-    let currentHP = parseInt($('.hp-text').text());
-    let newHP = currentHP - hpEntangle;
-    if (newHP < 0) {
-        newHP = 0;
+        let currentAP = parseInt($('.ap-text').text());
+        let newAP = currentAP - apEntangle;
+        if (newAP <= 0) {
+            newAP = 0;
+        
+        } if (newAP <= 0) {
+            $('.attack-btn').attr('disabled', true);
+        }
+
+        $('.ap-text').text(newAP);
+        $('#ap-meter').val(newAP);
+    
+        if (newAP <= 0) {
+            $('.freaky-fungus').removeClass('walk').addClass('jump');
+        }
+
+        let currentHP = parseInt($('.hp-text').text());
+        let newHP = currentHP - hpEntangle;
+        if (newHP < 0) {
+            newHP = 0;
+        }
+
+        $('.hp-text').text(newHP);    
+        $('#hp-meter').val(80);
+    
+        if (newHP <= 0) {
+            $('.freaky-fungus').removeClass('walk').addClass('dead');
+        }
+
+        let regenerate;
+            if(newHP <= 50){
+            regenerate = setInterval(function() {
+            newHP++;
+            $('#hp-meter').val(newHP);
+            $('.hp-text').text(newHP);
+            if (newHP >= 50) {
+                clearInterval(regenerate);
+            }
+         }, 1000);
+        }
     }
-    $('.hp-text').text(newHP);
-    $('#hp-meter').val(newHP);
-}
 
 let attackBtnClickedDragonBlade = function(){
-    // Update AP value
-    let currentAP = parseInt($('.ap-text').text());
-    let newAP = currentAP - apDragonBlade;
-    if (newAP < 0) {
-        newAP = 0;
-    }
-    $('.ap-text').text(newAP);
-    $('#ap-meter').val(newAP);
 
-    // Update HP value
-    let currentHP = parseInt($('.hp-text').text());
-    let newHP = currentHP - hpDragonBlade;
-    if (newHP < 0) {
-        newHP = 0;
+        let currentAP = parseInt($('.ap-text').text());
+        let newAP = currentAP - apDragonBlade;
+        if (newAP <= 0) {
+            newAP = 0;
+        
+        } if (newAP <= 0) {
+            $('.attack-btn').attr('disabled', true);
+        }
+
+        $('.ap-text').text(newAP);
+        $('#ap-meter').val(newAP);
+    
+        if (newAP <= 0) {
+            $('.freaky-fungus').removeClass('walk').addClass('jump');
+        }
+
+        let currentHP = parseInt($('.hp-text').text());
+        let newHP = currentHP - hpDragonBlade;
+        if (newHP < 0) {
+            newHP = 0;
+        }
+
+        $('.hp-text').text(newHP);    
+        $('#hp-meter').val(80);
+    
+        if (newHP <= 0) {
+            $('.freaky-fungus').removeClass('walk').addClass('dead');
+        }
+
+        let regenerate;
+            if(newHP <= 50){
+            regenerate = setInterval(function() {
+            newHP++;
+            $('#hp-meter').val(newHP);
+            $('.hp-text').text(newHP);
+            if (newHP >= 50) {
+                clearInterval(regenerate);
+            }
+         }, 1000);
+        }
     }
-    $('.hp-text').text(newHP);
-    $('#hp-meter').val(newHP);
-}
 
 let attackBtnClickedStarFire = function(){
-    // Update AP value
+
     let currentAP = parseInt($('.ap-text').text());
     let newAP = currentAP - apStarFire;
-    if (newAP < 0) {
+    if (newAP <= 0) {
         newAP = 0;
+    
+    } if (newAP <= 0) {
+        $('.attack-btn').attr('disabled', true);
     }
+
     $('.ap-text').text(newAP);
     $('#ap-meter').val(newAP);
 
-    // Update HP value
+    if (newAP <= 0) {
+        $('.freaky-fungus').removeClass('walk').addClass('jump');
+    }
+
     let currentHP = parseInt($('.hp-text').text());
     let newHP = currentHP - hpStarFire;
     if (newHP < 0) {
         newHP = 0;
     }
-    $('.hp-text').text(newHP);
-    $('#hp-meter').val(newHP);
+
+    $('.hp-text').text(newHP);    
+    $('#hp-meter').val(80);
+
+    if (newHP <= 0) {
+        $('.freaky-fungus').removeClass('walk').addClass('dead');
+    }
+
+    let regenerate;
+        if(newHP <= 50){
+        regenerate = setInterval(function() {
+        newHP++;
+        $('#hp-meter').val(newHP);
+        $('.hp-text').text(newHP);
+        if (newHP >= 50) {
+            clearInterval(regenerate);
+        }
+    }, 1000);
+    }
 }
