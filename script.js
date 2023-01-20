@@ -48,14 +48,23 @@ let attackBtnClickedArcaneScepter = function(){
     // Update AP value
     let currentAP = parseInt($('.ap-text').text());
     let newAP = currentAP - apArcane;
-    if (newAP < 0) {
+    if (newAP <= 0) {
         newAP = 0;
+    
+    // attack button will be DISABLE once newAP = 0
+    } if (newAP <= 0) {
+        $('.attack-btn').attr('disabled', true);
     }
 
      //here is where the render state changes in the DOM 
     // each time the attack is launched - showing the new AP
     $('.ap-text').text(newAP);
     $('#ap-meter').val(newAP);
+
+    //
+    if (newAP <= 0) {
+        $('.freaky-fungus').removeClass('walk').addClass('jump');
+    }
 
     // Update HP value
     let currentHP = parseInt($('.hp-text').text());
@@ -68,6 +77,10 @@ let attackBtnClickedArcaneScepter = function(){
     // each time the attack is launched - showing the new HP
     $('.hp-text').text(newHP);
     $('#hp-meter').val(newHP);
+
+    if (newHP <= 0) {
+        $('.freaky-fungus').removeClass('walk').addClass('dead');
+    }
 }
 
 let attackBtnClickedEntangle = function(){
