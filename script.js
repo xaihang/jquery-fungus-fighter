@@ -110,6 +110,7 @@ let attackBtnClickedArcaneScepter = function(){
     }
 }
 
+// same event handler story as Arcane Scepter for each of attack type:
 let attackBtnClickedEntangle = function(){
 
         let currentAP = parseInt($('.ap-text').text());
