@@ -35,54 +35,52 @@ function onReady() {
     
     // 🧠 Remember:
     // - Handle events that ->
-
-    const attackBtnArcane = $('.attack-btn, .arcane-sceptre').click(function() {
-        console.log('i have been clicked!');
-        let currentAP = $('#ap-meter').val();
-        let currentHP = $('#hp-meter').val();
-      console.log('i have been clicked!');
-       // Reduce AP by 12 and HP by 14
-       currentAP -= 12;
-       currentHP -= 14;
-       console.log('currentAP', currentAP);
-       console.log('currentHP', currentHP);
-      
-      //  // Update the AP meter and HP meter
-      //  $('#ap-meter').val(currentAP);
-      //  $('#hp-meter').val(currentHP);
-      
-      //  // Update the AP text and HP text
-      //  $('.ap-text').text(currentAP + ' AP');
-      //  $('.hp-text').text(currentHP + ' HP');
-      
-    
-      }); 
-      
-
-
+    $('.arcane-sceptre').click(attackBtnClickedArcaneScepter);
+    $('.entangle').click(attackBtnClickedEntangle);
     
     // - Updates state which is ->
 
 
     // - Rendered to the DOM
+};
+
+
+let attackBtnClickedArcaneScepter = function(){
+    // Update AP value
+    let currentAP = parseInt($('.ap-text').text());
+    let newAP = currentAP - apArcane;
+    if (newAP < 0) {
+        newAP = 0;
+    }
+    $('.ap-text').text(newAP);
+    $('#ap-meter').val(newAP);
+
+    // Update HP value
+    let currentHP = parseInt($('.hp-text').text());
+    let newHP = currentHP - hpArcane;
+    if (newHP < 0) {
+        newHP = 0;
+    }
+    $('.hp-text').text(newHP);
+    $('#hp-meter').val(newHP);
 }
 
-// const attackBtnArcaneSceptre =
-// $('.attack-btn, .arcane-sceptre').click(function() {
-//   let currentAP = $('#ap-meter').val();
-//   let currentHP = $('#hp-meter').val();
-// console.log('i have been clicked!');
-//  // Reduce AP by 12 and HP by 14
-// //  currentAP -= 12;
-// //  currentHP -= 14;
+let attackBtnClickedEntangle = function(){
+    // Update AP value
+    let currentAP = parseInt($('.ap-text').text());
+    let newAP = currentAP - apEntangle;
+    if (newAP < 0) {
+        newAP = 0;
+    }
+    $('.ap-text').text(newAP);
+    $('#ap-meter').val(newAP);
 
-// //  // Update the AP meter and HP meter
-// //  $('#ap-meter').val(currentAP);
-// //  $('#hp-meter').val(currentHP);
-
-// //  // Update the AP text and HP text
-// //  $('.ap-text').text(currentAP + ' AP');
-// //  $('.hp-text').text(currentHP + ' HP');
-
-
-// }); 
+    // Update HP value
+    let currentHP = parseInt($('.hp-text').text());
+    let newHP = currentHP - hpEntangle;
+    if (newHP < 0) {
+        newHP = 0;
+    }
+    $('.hp-text').text(newHP);
+    $('#hp-meter').val(newHP);
+}
