@@ -37,7 +37,9 @@ function onReady() {
     // - Handle events that ->
     $('.arcane-sceptre').click(attackBtnClickedArcaneScepter);
     $('.entangle').click(attackBtnClickedEntangle);
-    
+    $('.dragon-blade').click(attackBtnClickedDragonBlade);
+    $('.star-fire').click(attackBtnClickedStarFire);
+
     // - Updates state which is ->
 
 
@@ -78,6 +80,46 @@ let attackBtnClickedEntangle = function(){
     // Update HP value
     let currentHP = parseInt($('.hp-text').text());
     let newHP = currentHP - hpEntangle;
+    if (newHP < 0) {
+        newHP = 0;
+    }
+    $('.hp-text').text(newHP);
+    $('#hp-meter').val(newHP);
+}
+
+let attackBtnClickedDragonBlade = function(){
+    // Update AP value
+    let currentAP = parseInt($('.ap-text').text());
+    let newAP = currentAP - apDragonBlade;
+    if (newAP < 0) {
+        newAP = 0;
+    }
+    $('.ap-text').text(newAP);
+    $('#ap-meter').val(newAP);
+
+    // Update HP value
+    let currentHP = parseInt($('.hp-text').text());
+    let newHP = currentHP - hpDragonBlade;
+    if (newHP < 0) {
+        newHP = 0;
+    }
+    $('.hp-text').text(newHP);
+    $('#hp-meter').val(newHP);
+}
+
+let attackBtnClickedStarFire = function(){
+    // Update AP value
+    let currentAP = parseInt($('.ap-text').text());
+    let newAP = currentAP - apStarFire;
+    if (newAP < 0) {
+        newAP = 0;
+    }
+    $('.ap-text').text(newAP);
+    $('#ap-meter').val(newAP);
+
+    // Update HP value
+    let currentHP = parseInt($('.hp-text').text());
+    let newHP = currentHP - hpStarFire;
     if (newHP < 0) {
         newHP = 0;
     }
