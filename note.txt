@@ -1,5 +1,0 @@
-.click()
-
--This method is a shortcut for .on( "click", handler ): .click(function() { //code here});
--URL: https://api.jquery.com/click/ 
--As the .click() method is just a shorthand for .on( "click", handler ), detaching is possible using .off( "click" ).

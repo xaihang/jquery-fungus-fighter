@@ -33,53 +33,66 @@ function onReady() {
     // 🧠 Remember:
     // - Handle events that ->
     $('.arcane-sceptre').click(attackBtnClickedArcaneScepter);
-    $('.entangle').click(attackBtnClickedEntangle);
-    $('.dragon-blade').click(attackBtnClickedDragonBlade);
-    $('.star-fire').click(attackBtnClickedStarFire);
+    // $('.entangle').click(attackBtnClickedEntangle);
+    // $('.dragon-blade').click(attackBtnClickedDragonBlade);
+    // $('.star-fire').click(attackBtnClickedStarFire);
 
     // - Updates state which is ->
-
+    // $('.arcane-sceptre').click(---);
 
     // - Rendered to the DOM
+    // $('.arcane-sceptre').click(resultArcaneScepter);
 };
 
 //------- events handler functions when attacked btn is 'clicked' -------//
 let attackBtnClickedArcaneScepter = function(){
-    // Update AP value
+// **Update AP value**
+    // 'ap-text' element is a string, used parseInt() converts a string to an integer 
+    // It is important to use the parseInt() function in this case because the .text() 
+    // function returns the text as a string. 
+    // example: if the currentAP value is "50", .text() will return "50" as a string
+    // when we try to do arithmetic operations with it, it will reat it as concatenation
+    // therefore we need to convert it to an integer using parseInt().
     let currentAP = parseInt($('.ap-text').text());
     let newAP = currentAP - apArcane;
     if (newAP <= 0) {
         newAP = 0;
     
-    // attack button will be DISABLE once newAP = 0
+// attack button will be DISABLE once newAP = 0
     } if (newAP <= 0) {
         $('.attack-btn').attr('disabled', true);
     }
 
-     //here is where the render state changes in the DOM 
-    // each time the attack is launched - showing the new AP
+//here is where the render state changes in the DOM 
+// each time the attack is launched - showing the new AP
     $('.ap-text').text(newAP);
     $('#ap-meter').val(newAP);
 
-    //
+//If the Freaky Fungus runs out of HP, 
+//the monster is dead and you win! 
+//Replace the `walk` class with a `dead` class on the 
+//freaky-fungus element, to make them fall over and die.
     if (newAP <= 0) {
         $('.freaky-fungus').removeClass('walk').addClass('jump');
     }
 
-    // Update HP value
+// Update HP value
+// again here using parseInt() to convert sting into number and then capturing that with .text() 
     let currentHP = parseInt($('.hp-text').text());
     let newHP = currentHP - hpArcane;
     if (newHP < 0) {
         newHP = 0;
     }
 
-    //here is where the render state changes in the DOM 
-    // each time the attack is launched - showing the new HP
+//here is where the render state changes in the DOM 
+// each time the attack is launched - showing the new HP
     $('.hp-text').text(newHP);
 
-    // stretch-goal**Progress Bar** Updated the value of each `<progress>` element: 
+// stretch-goal**Progress Bar** Updated the value of each `<progress>` element: 
     $('#hp-meter').val(80);
 
+// if newHP is less or than equal to 0 - use 'dynamic' selector wording 
+//  along with removeClass() & addClass();
     if (newHP <= 0) {
         $('.freaky-fungus').removeClass('walk').addClass('dead');
     }
