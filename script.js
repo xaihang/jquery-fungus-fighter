@@ -27,11 +27,8 @@ const hpStarFire = 25;
 function onReady() {
     // render(); 
 
-    
-
     // Make sure you check the index.html file! 
     // There are lots of buttons and things ready for you to hook into here!
-    
     
     // 🧠 Remember:
     // - Handle events that ->
@@ -46,7 +43,7 @@ function onReady() {
     // - Rendered to the DOM
 };
 
-
+//------- events handler functions when attacked btn is 'clicked' -------//
 let attackBtnClickedArcaneScepter = function(){
     // Update AP value
     let currentAP = parseInt($('.ap-text').text());
@@ -54,6 +51,9 @@ let attackBtnClickedArcaneScepter = function(){
     if (newAP < 0) {
         newAP = 0;
     }
+
+     //here is where the render state changes in the DOM 
+    // each time the attack is launched - showing the new AP
     $('.ap-text').text(newAP);
     $('#ap-meter').val(newAP);
 
@@ -63,6 +63,9 @@ let attackBtnClickedArcaneScepter = function(){
     if (newHP < 0) {
         newHP = 0;
     }
+
+    //here is where the render state changes in the DOM 
+    // each time the attack is launched - showing the new HP
     $('.hp-text').text(newHP);
     $('#hp-meter').val(newHP);
 }
