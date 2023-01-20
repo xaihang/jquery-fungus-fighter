@@ -76,10 +76,27 @@ let attackBtnClickedArcaneScepter = function(){
     //here is where the render state changes in the DOM 
     // each time the attack is launched - showing the new HP
     $('.hp-text').text(newHP);
-    $('#hp-meter').val(newHP);
+
+    // stretch-goal**Progress Bar** Updated the value of each `<progress>` element: 
+    $('#hp-meter').val(80);
 
     if (newHP <= 0) {
         $('.freaky-fungus').removeClass('walk').addClass('dead');
+    }
+
+    // stretch-goal**HP Regeneration** 
+    //  If the Freaky Fungus' HP falls below 50, 
+    //  have it regenerate 1 HP every second.
+    let regenerate;
+        if(newHP <= 50){
+        regenerate = setInterval(function() {
+        newHP++;
+        $('#hp-meter').val(newHP);
+        $('.hp-text').text(newHP);
+        if (newHP >= 50) {
+            clearInterval(regenerate);
+        }
+     }, 1000);
     }
 }
 
